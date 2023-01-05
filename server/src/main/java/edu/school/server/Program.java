@@ -1,4 +1,4 @@
-package edu.school;
+package edu.school.server;
 
 import java.io.IOException;
 

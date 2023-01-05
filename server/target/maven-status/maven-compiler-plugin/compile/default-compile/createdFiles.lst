@@ -1,0 +1,6 @@
+edu/school/server/Program.class
+edu/school/server/Message.class
+edu/school/server/Server.class
+edu/school/server/Clients.class
+edu/school/server/MessageProcessing.class
+edu/school/server/Client.class

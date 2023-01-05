@@ -1,4 +1,4 @@
-package edu.school;
+package edu.school.client;
 
 public class Program {
 	public static void main(String[] args) {
