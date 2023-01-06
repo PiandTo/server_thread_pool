@@ -20,7 +20,7 @@ public class Server {
 	}
 
 	public void start() throws IOException {
-		try(ServerSocket listener = new ServerSocket(3000)) {
+		try(ServerSocket listener = new ServerSocket(this.port)) {
 			ExecutorService executorService = Executors.newFixedThreadPool(20);
 			while (true) {
 				Socket clientSocket = listener.accept();

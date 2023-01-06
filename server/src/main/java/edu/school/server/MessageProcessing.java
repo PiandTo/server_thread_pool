@@ -26,24 +26,43 @@ public class MessageProcessing implements Runnable{
 			while (true) {
 				printWriter.println("What is name?");
 				if ((name = bufferedReader.readLine()) != null) {
+					if (name.isEmpty()) {
+						continue;
+					}
 					client = new Client(name, this.socket, printWriter, bufferedReader);
-					Clients.clients.add(client);
-					break ;
+					synchronized (Clients.clients) {
+						if (Clients.names.contains(name)) {
+							printWriter.println("Sorry, this name is not available");
+							continue;
+						}
+						Clients.clients.add(client);
+						Clients.names.add(name);
+						break;
+					}
 				}
 			}
-			printWriter.println("Welcome " + client.getName());
+			welcomeLine();
 			while (true) {
-				if ((inline = bufferedReader.readLine()).equals("bye")) {
+				if ((inline = bufferedReader.readLine()) != null && inline.equals("bye")) {
 					break ;
-				}
-				for (Client c: Clients.clients) {
-					c.getPrintWriter().println(client.getName() + ": "  + inline);
+				} else if (inline != null) {
+					for (Client c: Clients.clients) {
+						c.getPrintWriter().println(client.getName() + ": " + inline);
+					}
 				}
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
+	private void welcomeLine() {
+		for(Client c : Clients.clients ) {
+			if (c.getName().equals(client.getName())) {
+				client.getPrintWriter().println("Welcome " + client.getName());
+			} else {
+				c.getPrintWriter().println(client.getName() + " joins!");
+			}
+		}
 	}
 }
