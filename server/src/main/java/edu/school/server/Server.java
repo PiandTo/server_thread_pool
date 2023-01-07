@@ -1,8 +1,5 @@
 package edu.school.server;
 
-import edu.school.server.Client;
-import edu.school.server.MessageProcessing;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

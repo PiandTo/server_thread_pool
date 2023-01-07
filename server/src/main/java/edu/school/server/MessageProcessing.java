@@ -24,7 +24,7 @@ public class MessageProcessing implements Runnable{
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 				) {
 			while (true) {
-				printWriter.println("What is name?");
+				printWriter.println("What is your name?");
 				if ((name = bufferedReader.readLine()) != null) {
 					if (name.isEmpty()) {
 						continue;
@@ -59,7 +59,8 @@ public class MessageProcessing implements Runnable{
 	private void welcomeLine() {
 		for(Client c : Clients.clients ) {
 			if (c.getName().equals(client.getName())) {
-				client.getPrintWriter().println("Welcome " + client.getName());
+				client.getPrintWriter().println(client.getName());
+				client.getPrintWriter().println("Welcome " + client.getName() + "!");
 			} else {
 				c.getPrintWriter().println(client.getName() + " joins!");
 			}
